@@ -2,7 +2,7 @@
 .godot/
 /android/
 
-# Exports (If you build your game into these folders)
+# Exports 
 export/
 builds/
 exports/
@@ -12,3 +12,6 @@ export_presets.cfg
 # OS generated files
 .DS_Store
 Thumbs.db
+
+
+Assets/

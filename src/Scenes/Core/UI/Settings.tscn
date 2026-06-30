@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://xlu3mrr2wo2i"]
+
+[ext_resource type="FontFile" uid="uid://b0ur5hyqayv53" path="res://Assets/Art/Fonts/DungeonFont.ttf" id="1_g2a5a"]
+[ext_resource type="Texture2D" uid="uid://cxf8n5ixifp0" path="res://Assets/Art/UI/Buttons/UI_Flat_Frame02a.png" id="1_xkitw"]
+[ext_resource type="Texture2D" uid="uid://bssexlligtf7u" path="res://Assets/Art/UI/Buttons/UI_Flat_Banner01a.png" id="2_g2a5a"]
+[ext_resource type="Script" uid="uid://v06bgxqcl7yk" path="res://src/Scripts/Core/settings.gd" id="2_vl6ex"]
+[ext_resource type="Texture2D" uid="uid://dctf0bmu5b72s" path="res://Assets/Art/UI/Buttons/Restart.png" id="4_8qska"]
+
+[sub_resource type="Theme" id="Theme_xkitw"]
+default_font = ExtResource("1_g2a5a")
+Button/font_sizes/font_size = 30
+Label/font_sizes/font_size = 30
+VBoxContainer/constants/separation = 9
+
+[sub_resource type="Theme" id="Theme_g2a5a"]
+
+[node name="Settings" type="Control" unique_id=1264965048]
+visible = false
+top_level = true
+layout_mode = 3
+anchors_preset = 0
+theme = SubResource("Theme_xkitw")
+script = ExtResource("2_vl6ex")
+
+[node name="BG" type="NinePatchRect" parent="." unique_id=338364145]
+texture_filter = 1
+layout_mode = 1
+offset_right = 268.0
+offset_bottom = 460.0
+texture = ExtResource("1_xkitw")
+region_rect = Rect2(0, 0, 96.71129, 65.04444)
+
+[node name="Banner" type="TextureRect" parent="BG" unique_id=1101622820]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.5
+offset_top = -19.0
+offset_right = 92.5
+offset_bottom = 45.0
+grow_horizontal = 2
+texture = ExtResource("2_g2a5a")
+
+[node name="Label" type="Label" parent="BG/Banner" unique_id=440922673]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -5.5
+offset_right = 31.0
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Settings"
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="BG" unique_id=179869822]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/MarginContainer" unique_id=1898919919]
+layout_mode = 2
+
+[node name="VolumeL" type="Label" parent="BG/MarginContainer/VBoxContainer" unique_id=1409871652]
+layout_mode = 2
+theme = SubResource("Theme_g2a5a")
+text = "Volume:"
+
+[node name="Volume" type="HSlider" parent="BG/MarginContainer/VBoxContainer" unique_id=1006670609]
+layout_mode = 2
+tick_count = 100
+
+[node name="DifficultyL" type="Label" parent="BG/MarginContainer/VBoxContainer" unique_id=2123618743]
+layout_mode = 2
+text = "AI    Difficulty:"
+
+[node name="Difficulty" type="OptionButton" parent="BG/MarginContainer/VBoxContainer" unique_id=566073072]
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "Easy"
+popup/item_0/id = 0
+popup/item_1/text = "Normal"
+popup/item_1/id = 1
+popup/item_2/text = "Hard"
+popup/item_2/id = 2
+
+[node name="BackgroundsL" type="Label" parent="BG/MarginContainer/VBoxContainer" unique_id=1193811715]
+layout_mode = 2
+text = "Backgrounds:"
+
+[node name="Backgrounds" type="OptionButton" parent="BG/MarginContainer/VBoxContainer" unique_id=565561346]
+layout_mode = 2
+item_count = 4
+popup/item_0/text = "Ruins"
+popup/item_0/id = 0
+popup/item_1/text = "Fields"
+popup/item_1/id = 1
+popup/item_2/text = "Mountains"
+popup/item_2/id = 2
+popup/item_3/text = "Canyon"
+popup/item_3/id = 3
+
+[node name="SaveB" type="Button" parent="BG/MarginContainer/VBoxContainer" unique_id=693682020]
+layout_mode = 2
+text = "Save Game"
+
+[node name="LoadB" type="Button" parent="BG/MarginContainer/VBoxContainer" unique_id=1505120891]
+layout_mode = 2
+text = "Load Game"
+
+[node name="QuitB" type="Button" parent="BG/MarginContainer/VBoxContainer" unique_id=330982902]
+layout_mode = 2
+text = "Quit Game"
+
+[node name="Close" type="TextureButton" parent="BG/MarginContainer" unique_id=1063689382]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture_normal = ExtResource("4_8qska")
+stretch_mode = 0
+
+[connection signal="value_changed" from="BG/MarginContainer/VBoxContainer/Volume" to="." method="master_volume"]
+[connection signal="item_selected" from="BG/MarginContainer/VBoxContainer/Difficulty" to="." method="ai_difficulty"]
+[connection signal="item_selected" from="BG/MarginContainer/VBoxContainer/Backgrounds" to="." method="background_selection"]
+[connection signal="pressed" from="BG/MarginContainer/VBoxContainer/SaveB" to="." method="_on_save_b_pressed"]
+[connection signal="pressed" from="BG/MarginContainer/VBoxContainer/LoadB" to="." method="_on_load_b_pressed"]
+[connection signal="pressed" from="BG/MarginContainer/VBoxContainer/QuitB" to="." method="_on_quit_b_pressed"]
+[connection signal="pressed" from="BG/MarginContainer/Close" to="." method="_on_close_pressed"]

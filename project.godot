@@ -11,8 +11,19 @@ config_version=5
 [application]
 
 config/name="Mythos Trials"
+run/main_scene="uid://dckc7vjxdys8o"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Savemanager="*uid://c3m8du4x61pfd"
+Scenechanger="*uid://cqnikqq3us0om"
+Globals="*uid://b6a4yxvla8mp"
+
+[display]
+
+mouse_cursor/canvas_textures/default_texture_filter=1
 
 [physics]
 
@@ -20,6 +31,8 @@ config/icon="res://icon.svg"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
